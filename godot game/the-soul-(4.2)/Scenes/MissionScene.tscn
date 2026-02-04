@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://mission123"]
+
+[ext_resource type="Script" path="res://Scripts/MissionManager.gd" id="1_manager"]
+[ext_resource type="PackedScene" uid="uid://player123" path="res://Scenes/Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://enemy123" path="res://Scenes/Enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://wall123" path="res://Scenes/Wall.tscn" id="4_wall"]
+[ext_resource type="PackedScene" path="res://Scenes/Hotbar.tscn" id="5_hotbar"]
+[ext_resource type="PackedScene" path="res://Scenes/MoneyDisplay.tscn" id="6_money"]
+
+[node name="MissionScene" type="Node2D"]
+script = ExtResource("1_manager")
+
+[node name="NightOverlay" type="CanvasModulate" parent="."]
+color = Color(0.15, 0.15, 0.3, 1)
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.05, 0.1, 1)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(500, 300)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(800, 100)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(200, 500)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("3_enemy")]
+position = Vector2(800, 500)
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall1" parent="Walls" instance=ExtResource("4_wall")]
+position = Vector2(400, 200)
+scale = Vector2(1, 4)
+
+[node name="Wall2" parent="Walls" instance=ExtResource("4_wall")]
+position = Vector2(600, 400)
+scale = Vector2(1, 4)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hotbar" parent="UI" instance=ExtResource("5_hotbar")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MoneyDisplay" parent="UI" instance=ExtResource("6_money")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 60.0
